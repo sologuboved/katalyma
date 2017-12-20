@@ -1,6 +1,8 @@
 from datetime import datetime
 DOT = '.'
 
+# strftime("%d %B %Y, %A %H:%M:%S")
+
 
 def process_date(raw_date):
     if raw_date == 'today':
@@ -36,6 +38,17 @@ def process_date(raw_date):
         return datetime(this_year, *date)
     except (TypeError, ValueError):
         return
+
+
+def process_int(raw_int):
+    try:
+        return int(raw_int)
+    except ValueError:
+        return
+
+
+def process_content(raw_content):
+    return raw_content
 
 
 if __name__ == '__main__':
