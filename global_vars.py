@@ -23,3 +23,11 @@ CYCLE = (
     (STARRED, BLUE)
 )
 
+
+FILENAME = 'updates.txt'
+INVALID_INPUT = "Invalid input!"
+WRONG = "Something is wrong with the file"
+SUCCESS = "Written in"
+LEN_CYCLE = 12
+UNKNOWN = "Date unknown"
+
