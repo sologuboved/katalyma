@@ -1,13 +1,13 @@
 from global_vars import *
-from process_date_input import process_date
+from process_input import process_date
 
 
 class Katalyma(object):
 
-    def __init__(self, filename, cycle, curr_date=None, curr_ind=None, curr_content=None, prev_date=None):
+    def __init__(self, filename, cycle, curr_date=None, curr_ind=None, curr_content=None, prev_date=UNKNOWN):
         self._filename = filename
         self._cycle = cycle
-        self._curr_date = process_date(curr_date)
+        self._curr_date = curr_date
         self._curr_ind = curr_ind
         self._curr_content = curr_content
         self._prev_date = prev_date
@@ -16,6 +16,7 @@ class Katalyma(object):
         self._new_content = None
 
         if self._curr_ind is None: self.read_out()
+        else: self.write_in()
 
     def write_in(self):
         with open(self._filename, 'w') as handler:
@@ -32,20 +33,23 @@ class Katalyma(object):
             self._curr_content = handler.readline()
             self._prev_date = handler.readline()
 
-    def plug_new_date(self, raw_date):
-        self._new_date = process_date(raw_date).strftime('%d.%m.%Y')  # strftime("%d %B %Y, %A %H:%M:%S")
+    def plug_new_date(self, new_date):
+        self._new_date = new_date
 
-    def find_next(self, raw_date):
+    def provide_next(self, new_date):
         self._prev_date = self._curr_date
-        self.plug_new_date(raw_date)
+        self._new_date = new_date
         self._new_ind = (self._curr_ind + 1) % len(self._cycle)
         self._new_content = str(self._cycle[self._new_ind])
 
-    def coerce_prev(self):
+    def provide_prev(self):
         self._new_date = self._curr_date = self._prev_date
         self._new_ind = self._curr_ind = (self._curr_ind - 1) % len(self._cycle)
         self._new_content = self._curr_content = str(self._cycle[self._curr_ind])
         self._prev_date = UNKNOWN
+
+    def perform_checks(self):
+        pass
 
 
 if __name__ == '__main__':
