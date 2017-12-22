@@ -17,8 +17,13 @@ def date_to_string(cooked_date):
 
 
 def string_to_date(raw_date):
-    print('here', raw_date)
-    if raw_date == UNKNOWN:
+    print('string_to_date')
+    print(raw_date, UNKNOWN, raw_date == UNKNOWN)
+    if not raw_date:
+        return
+
+    if raw_date.strip() == UNKNOWN:
+        print('here')
         return UNKNOWN
 
     if raw_date == 'today':

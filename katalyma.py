@@ -5,6 +5,7 @@ from process_data import *
 class Katalyma(object):
 
     def __init__(self, filename, cycle, curr_date=None, curr_ind=None, prev_date=UNKNOWN, new_there=False):
+        print('__init__')
         self._error = None
         self._filename = filename
         self._cycle = cycle
@@ -29,6 +30,7 @@ class Katalyma(object):
             self._error = self.perform_checks()
 
     def get_curr(self):
+        print('get_curr')
         if self._prev_date == UNKNOWN:
             prev_date = UNKNOWN
         else:
@@ -39,6 +41,7 @@ class Katalyma(object):
                                                                 prev_date)
 
     def perform_checks(self):
+        print('perform_checks')
         try:
             handler = open(self._filename)
         except FileNotFoundError:
@@ -58,12 +61,14 @@ class Katalyma(object):
             return 5
 
     def get_errors(self):
+        print('get_errors')
         try:
             return ERRORS[self._error]
         except KeyError:
             return
 
     def write_in(self):
+        print('write_in')
         with open(self._filename, 'w') as handler:
             handler.write(date_to_string(self._curr_date) + '\n')
             handler.write(str(self._curr_ind) + '\n')
@@ -72,6 +77,7 @@ class Katalyma(object):
         return True
 
     def read_out(self):
+        print('read_out')
         with open(self._filename) as handler:
             cd = handler.readline()
             print('cd', cd)
@@ -84,12 +90,14 @@ class Katalyma(object):
             self._prev_date = string_to_date(handler.readline())
 
     def fill_in_curr_content(self):
+        print('fill_in_curr_content')
         try:
             self._curr_content = self._cycle[self._curr_ind]
         except (IndexError, TypeError):
             self._curr_content = None
 
     def provide_next(self, new_date):
+        print('provide next')
         self._new_there = True
         self._prev_date = self._curr_date
         self._curr_date = string_to_date(new_date)
@@ -97,7 +105,8 @@ class Katalyma(object):
         self.fill_in_curr_content()
 
     def provide_prev(self):
-        print("provide_prev", self._curr_date)
+        print('provide_prev')
+        # print("provide_prev", self._curr_date)
         self._curr_date = self._prev_date
         self._curr_ind = (self._curr_ind - 1) % len(self._cycle)
         self.fill_in_curr_content()
