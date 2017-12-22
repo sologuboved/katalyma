@@ -26,8 +26,14 @@ CYCLE = (
 
 FILENAME = 'updates.txt'
 INVALID_INPUT = "Invalid input!"
-WRONG = "Something is wrong with the file"
-SUCCESS = "Written in"
 LEN_CYCLE = 12
 UNKNOWN = "Date unknown"
+
+ERRORS = {1: "File not found!",
+          2: "Current date makes no sense!",
+          3: "Current index not an integer!",
+          4: "New cycle content not found!",
+          5: "Previous date makes no sense!"}
+
+
 

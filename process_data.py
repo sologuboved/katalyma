@@ -1,16 +1,32 @@
 from datetime import datetime
+from global_vars import UNKNOWN
 DOT = '.'
 
-# strftime("%d %B %Y, %A %H:%M:%S")
+
+def tuple_to_string(raw_tuple):
+    return "%s - %s" % (raw_tuple[0], raw_tuple[1])
 
 
-def process_date(raw_date):
+def date_to_string(cooked_date):
+    if cooked_date == UNKNOWN:
+        return UNKNOWN
+    try:
+        return cooked_date.strftime("%d.%m.%Y")
+    except AttributeError:
+        return
+
+
+def string_to_date(raw_date):
+    print('here', raw_date)
+    if raw_date == UNKNOWN:
+        return UNKNOWN
+
     if raw_date == 'today':
         return datetime.today()
 
     try:
         date = list(map(int, map(lambda i: i.strip(), raw_date.split(DOT))))
-    except ValueError:
+    except (ValueError, AttributeError):
         return
 
     date.reverse()
@@ -43,14 +59,13 @@ def process_date(raw_date):
 def process_int(raw_int):
     try:
         return int(raw_int)
-    except ValueError:
+    except (ValueError, TypeError):
         return
 
 
-def process_content(raw_content):
-    return raw_content
-
-
 if __name__ == '__main__':
-    print(process_date(""))
+    pass
+    # print(string_to_date(""))
+    # print(type(string_to_date('today')))
+
 
