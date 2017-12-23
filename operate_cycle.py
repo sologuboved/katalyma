@@ -4,6 +4,9 @@ from global_vars import *
 
 def get_slew(new_date):
     katalyma_now = Katalyma(filename=FILENAME, cycle=CYCLE)
+    error = katalyma_now.get_errors()
+    if error:
+        return error
     katalyma_now.provide_next(new_date)
     katalyma_now.perform_checks()
     error = katalyma_now.get_errors()

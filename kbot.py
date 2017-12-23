@@ -72,7 +72,7 @@ def cur(bot, update):
     query = update['message']['text']
     print('query:', query)
     reply = see_curr()
-    print('reply:', reply, '\n')
+    print('reply:\n', reply, '\n')
     chat_id = update.message.chat_id
     bot.send_message(chat_id=chat_id, text=reply)
 
@@ -82,7 +82,7 @@ def nxt(bot, update):
     query = update['message']['text']
     print('query:', query)
     reply = see_next()
-    print('reply:', reply, '\n')
+    print('reply:\n', reply, '\n')
     chat_id = update.message.chat_id
     bot.send_message(chat_id=chat_id, text=reply)
 

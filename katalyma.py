@@ -17,12 +17,12 @@ class Katalyma(object):
         self.fill_in_curr_content()
 
         if new_there:
-            self._error = self.perform_checks()
+            self.perform_checks()
             if not self._error:
                 self.write_in()
         else:
             self.read_out()
-            self._error = self.perform_checks()
+            self.perform_checks()
 
     def get_curr(self):
         if self._prev_date == UNKNOWN:
@@ -38,20 +38,25 @@ class Katalyma(object):
         try:
             handler = open(self._filename)
         except FileNotFoundError:
-            return 1
+            self._error = 1
+            return
         handler.close()
 
         if not (type(self._curr_date) is datetime or self._curr_date == UNKNOWN):
-            return 2
+            self._error = 2
+            return
 
         if type(self._curr_ind) is not int:
-            return 3
+            self._error = 3
+            return
 
         if type(self._curr_content) is not tuple:
-            return 4
+            self._error = 4
+            return
 
         if not (type(self._prev_date) is datetime or self._prev_date == UNKNOWN):
-            return 5
+            self._error = 5
+            return
 
     def get_errors(self):
         try:
