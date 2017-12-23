@@ -33,10 +33,10 @@ class Katalyma(object):
             prev_date = UNKNOWN
         else:
             prev_date = date_to_string(self._prev_date)
-        return "Date: %s,\nIndex: %d\n%s\nPrevious date: %s" % (date_to_string(self._curr_date),
-                                                                self._curr_ind,
-                                                                tuple_to_string(self._curr_content),
-                                                                prev_date)
+        return "Date: %s\nIndex: %d\n%s\nPrevious date: %s" % (date_to_string(self._curr_date),
+                                                               self._curr_ind,
+                                                               tuple_to_string(self._curr_content),
+                                                               prev_date)
 
     def perform_checks(self):
         try:
@@ -45,7 +45,7 @@ class Katalyma(object):
             return 1
         handler.close()
 
-        if not(type(self._curr_date) is datetime or self._curr_date == UNKNOWN):
+        if not (type(self._curr_date) is datetime or self._curr_date == UNKNOWN):
             return 2
 
         if type(self._curr_ind) is not int:
@@ -54,7 +54,7 @@ class Katalyma(object):
         if type(self._curr_content) is not tuple:
             return 4
 
-        if not(type(self._prev_date) is datetime or self._prev_date == UNKNOWN):
+        if not (type(self._prev_date) is datetime or self._prev_date == UNKNOWN):
             return 5
 
     def get_errors(self):
@@ -101,5 +101,3 @@ class Katalyma(object):
 
 if __name__ == '__main__':
     pass
-
-
