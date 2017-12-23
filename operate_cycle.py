@@ -7,6 +7,8 @@ def get_slew(new_date):
     error = katalyma_now.get_errors()
     if error:
         return error
+    if not new_date:
+        new_date = 'today'
     katalyma_now.provide_next(new_date)
     katalyma_now.perform_checks()
     error = katalyma_now.get_errors()
