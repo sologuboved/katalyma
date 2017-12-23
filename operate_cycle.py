@@ -56,10 +56,10 @@ if __name__ == '__main__':
     # gray - black
     # 19.12.2017
 
-    # print(rewrite_file("19.12.2017", '3'))
-    # print(rewrite_file("19.12.2017", '3'))
+    print(rewrite_file("19.12.2017", '3', '12.12.2017'))
     # print(slew("26.12.2017"))
-    print(unslew())
+    # print(unslew())
+
 
 
 
