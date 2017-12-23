@@ -35,7 +35,7 @@ class Katalyma(object):
             prev_date = date_to_string(self._prev_date)
         return "Date: %s,\nIndex: %d\n%s\nPrevious date: %s" % (date_to_string(self._curr_date),
                                                                 self._curr_ind,
-                                                                str(self._curr_content),
+                                                                tuple_to_string(self._curr_content),
                                                                 prev_date)
 
     def perform_checks(self):

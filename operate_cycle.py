@@ -39,7 +39,7 @@ def rewrite_file(curr_date, curr_ind, prev_date=None):
         return "So far, so good"
 
 
-def get_out():
+def see_curr():
     katalyma_now = Katalyma(filename=FILENAME, cycle=CYCLE)
     katalyma_now.perform_checks()
     error = katalyma_now.get_errors()
@@ -56,9 +56,10 @@ if __name__ == '__main__':
     # gray - black
     # 19.12.2017
 
-    print(rewrite_file("19.12.2017", '3', '12.12.2017'))
+    # print(rewrite_file("19.12.2017", '3', '12.12.2017'))
     # print(slew("26.12.2017"))
     # print(unslew())
+    print(see_curr())
 
 
 
