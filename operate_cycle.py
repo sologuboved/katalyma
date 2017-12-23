@@ -2,7 +2,7 @@ from katalyma import Katalyma
 from global_vars import *
 
 
-def slew(new_date):
+def get_slew(new_date):
     katalyma_now = Katalyma(filename=FILENAME, cycle=CYCLE)
     katalyma_now.provide_next(new_date)
     katalyma_now.perform_checks()
@@ -13,7 +13,7 @@ def slew(new_date):
     return "So far, so good"
 
 
-def unslew():
+def get_unslew():
     katalyma_now = Katalyma(filename=FILENAME, cycle=CYCLE)
     katalyma_now.provide_prev()
     katalyma_now.perform_checks()
@@ -24,7 +24,7 @@ def unslew():
     return "So far, so good"
 
 
-def rewrite_file(curr_date, curr_ind, prev_date=None):
+def rewrite_file(curr_date, curr_ind, prev_date=UNKNOWN):
     katalyma_now = Katalyma(filename=FILENAME,
                             cycle=CYCLE,
                             curr_date=curr_date,
@@ -68,10 +68,11 @@ if __name__ == '__main__':
     # 19.12.2017
 
     # print(rewrite_file("19.12.2017", '3', '12.12.2017'))
-    # print(slew("26.12.2017"))
-    # print(unslew())
+    # print(rewrite_file("19.12.2017", '3'))
+    print(get_slew("26.12.2017"))
+    # print(get_unslew())
     # print(see_curr())
-    print(see_next())
+    # print(see_next())
 
 
 

@@ -17,15 +17,11 @@ class Katalyma(object):
         self.fill_in_curr_content()
 
         if new_there:
-            if not self._prev_date:
-                self._prev_date = UNKNOWN
             self._error = self.perform_checks()
             if not self._error:
                 self.write_in()
         else:
             self.read_out()
-            if not self._prev_date:
-                self._prev_date = UNKNOWN
             self._error = self.perform_checks()
 
     def get_curr(self):
