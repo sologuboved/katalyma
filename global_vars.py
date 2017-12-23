@@ -30,10 +30,10 @@ LEN_CYCLE = 12
 UNKNOWN = "Date unknown"
 
 ERRORS = {1: "File not found!",
-          2: "Current date makes no sense!",
-          3: "Current index not an integer!",
+          2: "Current date makes no sense or is missing!",
+          3: "Current index is not an integer or is missing!",
           4: "New cycle content not found!",
-          5: "Previous date makes no sense!"}
+          5: "Previous date makes no sense or is missing!"}
 
 
 
