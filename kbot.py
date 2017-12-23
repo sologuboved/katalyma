@@ -4,6 +4,12 @@ from telegram.ext import Updater, CommandHandler
 from tkn import TOKEN
 from operate_cycle import *
 
+# cur - current state
+# nxt - next state
+# slew - write next state in
+# unslew - write previous state in
+# rewr - 19.12.2017 3 12.12.2017
+
 
 def start(bot, update):
     text = "όνειρα γλυκά"
