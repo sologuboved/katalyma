@@ -49,6 +49,17 @@ def see_curr():
         return katalyma_now.get_curr()
 
 
+def see_next():
+    katalyma_now = Katalyma(filename=FILENAME, cycle=CYCLE)
+    katalyma_now.provide_next(UNKNOWN)
+    katalyma_now.perform_checks()
+    error = katalyma_now.get_errors()
+    if error:
+        return error
+    else:
+        return katalyma_now.get_curr()
+
+
 if __name__ == '__main__':
     pass
     # 26.12.2017
@@ -59,7 +70,8 @@ if __name__ == '__main__':
     # print(rewrite_file("19.12.2017", '3', '12.12.2017'))
     # print(slew("26.12.2017"))
     # print(unslew())
-    print(see_curr())
+    # print(see_curr())
+    print(see_next())
 
 
 
