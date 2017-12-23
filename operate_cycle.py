@@ -24,7 +24,17 @@ def get_unslew():
     return "So far, so good"
 
 
-def rewrite_file(curr_date, curr_ind, prev_date=UNKNOWN):
+def rewrite_file(user_input):
+    try:
+        curr_date, curr_ind = user_input.split()
+        prev_date = UNKNOWN
+    except ValueError:
+        try:
+            curr_date, curr_ind, prev_date = user_input.split()
+        except ValueError:
+            curr_date = user_input
+            curr_ind = None
+            prev_date = None
     katalyma_now = Katalyma(filename=FILENAME,
                             cycle=CYCLE,
                             curr_date=curr_date,
@@ -67,9 +77,9 @@ if __name__ == '__main__':
     # gray - black
     # 19.12.2017
 
-    # print(rewrite_file("19.12.2017", '3', '12.12.2017'))
-    # print(rewrite_file("19.12.2017", '3'))
-    print(get_slew("26.12.2017"))
+    print(rewrite_file("19.12.2017 3 12.12.2017"))
+    # print(rewrite_file("19.12.2017 3"))
+    # print(get_slew("26.12.2017"))
     # print(get_unslew())
     # print(see_curr())
     # print(see_next())
