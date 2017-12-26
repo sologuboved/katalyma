@@ -82,14 +82,9 @@ if __name__ == '__main__':
     # gray - black
     # 19.12.2017
 
-    print(rewrite_file("19.12.2017 3 12.12.2017"))
+    # print(rewrite_file("19.12.2017 3 12.12.2017"))
     # print(rewrite_file("19.12.2017 3"))
     # print(get_slew("26.12.2017"))
     # print(get_unslew())
-    # print(see_curr())
+    print(see_curr())
     # print(see_next())
-
-
-
-
-
