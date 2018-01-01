@@ -1,95 +1,121 @@
 # -*- coding: utf-8 -*-
 
 from telegram.ext import Updater, CommandHandler
-from tkn import TOKEN
+from tkn import TOKEN, AAS_ID, ADS_ID
 from operate_cycle import *
 
+NOAUTH = "This is a private bot"
+
 # cur - current state
-# nxt - next state
+# next - next state
 # slew - write next state in
 # unslew - write previous state in
 # rewr - 19.12.2017 3 12.12.2017
 
 
+def is_authorized(chat_id):
+    return chat_id == AAS_ID or chat_id == ADS_ID
+
+
 def start(bot, update):
-    text = "όνειρα γλυκά"
     chat_id = update.message.chat_id
+    if not is_authorized(chat_id):
+        text = NOAUTH
+    else:
+        text = "όνειρα γλυκά"
     bot.send_message(chat_id=chat_id, text=text)
 
 
 def description(bot, update):
-    text = "**Commands:** \n\n" \
-           "/slew 26.12.2017\n" \
-           "/unslew\n" \
-           "/rewr 19.12.2017 3 12.12.2017\n" \
-           "/cur\n" \
-           "/nxt\n\n" \
-           "**Shorthand:**\n\n" \
-           "today\n" \
-           "19.12\n" \
-           "19"
-
     chat_id = update.message.chat_id
+    if not is_authorized(chat_id):
+        text = NOAUTH
+    else:
+        text = "Commands: \n\n" \
+               "/slew 26.12.2017\n" \
+               "/unslew\n" \
+               "/rewr 19.12.2017 3 12.12.2017\n" \
+               "/cur\n" \
+               "/next\n\n" \
+               "Shorthand:\n\n" \
+               "today\n" \
+               "19.12\n" \
+               "19"
     bot.send_message(chat_id=chat_id, text=text)
 
 
 def slew(bot, update):
     # /slew 26.12.2017
-    query = update['message']['text']
-    print('query:', query)
-    query = query.split()
-    try:
-        query = query[1]
-    except IndexError:
-        query = ''
-    reply = get_slew(query)
-    print('reply:', reply, '\n')
     chat_id = update.message.chat_id
+    if not is_authorized(chat_id):
+        reply = NOAUTH
+    else:
+        query = update['message']['text']
+        print('query:', query)
+        query = query.split()
+        try:
+            query = query[1]
+        except IndexError:
+            query = ''
+        reply = get_slew(query)
+        print('reply:', reply, '\n')
     bot.send_message(chat_id=chat_id, text=reply)
 
 
 def unslew(bot, update):
     # /unslew
-    query = update['message']['text']
-    print('query:', query)
-    reply = get_unslew()
-    print('reply:', reply, '\n')
     chat_id = update.message.chat_id
+    if not is_authorized(chat_id):
+        reply = NOAUTH
+    else:
+        query = update['message']['text']
+        print('query:', query)
+        reply = get_unslew()
+        print('reply:', reply, '\n')
     bot.send_message(chat_id=chat_id, text=reply)
 
 
 def rewr(bot, update):
     # /rewr 19.12.2017 3 12.12.2017
-    query = update['message']['text']
-    print('query:', query)
-    query = query.split()
-    try:
-        query = ' '.join(query[1:])
-    except IndexError:
-        query = ''
-    reply = rewrite_file(query)
-    print('reply:', reply, '\n')
     chat_id = update.message.chat_id
+    if not is_authorized(chat_id):
+        reply = NOAUTH
+    else:
+        query = update['message']['text']
+        print('query:', query)
+        query = query.split()
+        try:
+            query = ' '.join(query[1:])
+        except IndexError:
+            query = ''
+        reply = rewrite_file(query)
+        print('reply:', reply, '\n')
     bot.send_message(chat_id=chat_id, text=reply)
 
 
 def cur(bot, update):
     # /cur
-    query = update['message']['text']
-    print('query:', query)
-    reply = see_curr()
-    print('reply:\n', reply, '\n')
     chat_id = update.message.chat_id
+    if not is_authorized(chat_id):
+        reply = NOAUTH
+    else:
+        query = update['message']['text']
+        print('query:', query)
+        reply = see_curr()
+        print('reply:\n', reply, '\n')
     bot.send_message(chat_id=chat_id, text=reply)
 
 
 def nxt(bot, update):
-    # /nxt
-    query = update['message']['text']
-    print('query:', query)
-    reply = see_next()
-    print('reply:\n', reply, '\n')
+    # /next
     chat_id = update.message.chat_id
+    if not is_authorized(chat_id):
+        reply = NOAUTH
+    else:
+        query = update['message']['text']
+        print('query:', query)
+        reply = see_next()
+        print('reply:\n', reply, '\n')
     bot.send_message(chat_id=chat_id, text=reply)
 
 
@@ -103,7 +129,7 @@ if __name__ == '__main__':
     unslew_handler = CommandHandler('unslew', unslew)
     rewr_handler = CommandHandler('rewr', rewr)
     cur_handler = CommandHandler('cur', cur)
-    nxt_handler = CommandHandler('nxt', nxt)
+    nxt_handler = CommandHandler('next', nxt)
 
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
