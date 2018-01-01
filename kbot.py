@@ -5,6 +5,7 @@ from tkn import TOKEN, AAS_ID, ADS_ID
 from operate_cycle import *
 
 NOAUTH = "This is a private bot"
+ATTEMPT = "%d attempted %s"
 
 # cur - current state
 # next - next state
@@ -21,6 +22,7 @@ def start(bot, update):
     chat_id = update.message.chat_id
     if not is_authorized(chat_id):
         text = NOAUTH
+        print(ATTEMPT % (chat_id, '/start'))
     else:
         text = "όνειρα γλυκά"
     bot.send_message(chat_id=chat_id, text=text)
@@ -30,6 +32,7 @@ def description(bot, update):
     chat_id = update.message.chat_id
     if not is_authorized(chat_id):
         text = NOAUTH
+        print(ATTEMPT % (chat_id, '/help'))
     else:
         text = "Commands: \n\n" \
                "/slew 26.12.2017\n" \
@@ -49,6 +52,7 @@ def slew(bot, update):
     chat_id = update.message.chat_id
     if not is_authorized(chat_id):
         reply = NOAUTH
+        print(ATTEMPT % (chat_id, '/slew'))
     else:
         query = update['message']['text']
         print('query:', query)
@@ -67,6 +71,7 @@ def unslew(bot, update):
     chat_id = update.message.chat_id
     if not is_authorized(chat_id):
         reply = NOAUTH
+        print(ATTEMPT % (chat_id, '/unslew'))
     else:
         query = update['message']['text']
         print('query:', query)
@@ -80,6 +85,7 @@ def rewr(bot, update):
     chat_id = update.message.chat_id
     if not is_authorized(chat_id):
         reply = NOAUTH
+        print(ATTEMPT % (chat_id, '/rewr'))
     else:
         query = update['message']['text']
         print('query:', query)
@@ -98,6 +104,7 @@ def cur(bot, update):
     chat_id = update.message.chat_id
     if not is_authorized(chat_id):
         reply = NOAUTH
+        print(ATTEMPT % (chat_id, '/cur'))
     else:
         query = update['message']['text']
         print('query:', query)
@@ -111,6 +118,7 @@ def nxt(bot, update):
     chat_id = update.message.chat_id
     if not is_authorized(chat_id):
         reply = NOAUTH
+        print(ATTEMPT % (chat_id, '/next'))
     else:
         query = update['message']['text']
         print('query:', query)
