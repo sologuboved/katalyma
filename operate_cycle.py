@@ -15,7 +15,7 @@ def get_slew(new_date):
     if error:
         return error
     katalyma_now.write_in()
-    return "So far, so good"
+    return ALRIGHT
 
 
 def get_unslew():
@@ -26,7 +26,7 @@ def get_unslew():
     if error:
         return error
     katalyma_now.write_in()
-    return "So far, so good"
+    return ALRIGHT
 
 
 def rewrite_file(user_input):
@@ -51,7 +51,7 @@ def rewrite_file(user_input):
     if error:
         return error
     else:
-        return "So far, so good"
+        return ALRIGHT
 
 
 def see_curr():

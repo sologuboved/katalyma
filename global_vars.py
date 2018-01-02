@@ -35,5 +35,7 @@ ERRORS = {1: "File not found!",
           4: "New cycle content not found!",
           5: "Previous date makes no sense or is missing!"}
 
+ALRIGHT = "So far, so good"
+
 
 
