@@ -7,12 +7,6 @@ from operate_cycle import *
 NOAUTH = "This is a private bot"
 ATTEMPT = "%d attempted %s"
 
-# cur - current state
-# next - next state
-# slew - write next state in
-# unslew - write previous state in
-# rewr - 19.12.2017 3 12.12.2017
-
 
 def is_authorized(chat_id):
     return chat_id == AAS_ID or chat_id == ADS_ID
