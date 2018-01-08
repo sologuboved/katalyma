@@ -1,5 +1,6 @@
 from katalyma import Katalyma
 from global_vars import *
+from process_data import tuple_to_string, process_int
 
 
 def get_slew(new_date):
@@ -75,16 +76,14 @@ def see_next():
         return katalyma_now.get_curr()
 
 
-if __name__ == '__main__':
-    pass
-    # 26.12.2017
-    # 2
-    # gray - black
-    # 19.12.2017
-
-    # print(rewrite_file("19.12.2017 3 12.12.2017"))
-    # print(rewrite_file("19.12.2017 3"))
-    # print(get_slew("26.12.2017"))
-    # print(get_unslew())
-    print(see_curr())
-    # print(see_next())
+def see_cycle(user_input):
+    if user_input:
+        ind = process_int(user_input)
+        try:
+            return tuple_to_string(CYCLE[ind])
+        except (IndexError, TypeError):
+            return INVALID_INPUT
+    cycle = ''
+    for ind in range(len(CYCLE)):
+        cycle += "%d: %s\n" % (ind, tuple_to_string(CYCLE[ind]))
+    return cycle
