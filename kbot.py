@@ -121,6 +121,25 @@ def nxt(bot, update):
     bot.send_message(chat_id=chat_id, text=reply)
 
 
+def cyc(bot, update):
+    # /cycle 4
+    chat_id = update.message.chat_id
+    if not is_authorized(chat_id):
+        reply = NOAUTH
+        print(ATTEMPT % (chat_id, '/next'))
+    else:
+        query = update['message']['text']
+        print('query:', query)
+        query = query.split()
+        try:
+            query = query[1]
+        except IndexError:
+            query = ''
+        reply = see_cycle(query)
+        print('reply:', reply, '\n')
+    bot.send_message(chat_id=chat_id, text=reply)
+
+
 if __name__ == '__main__':
     updater = Updater(token=TOKEN)
     dispatcher = updater.dispatcher
@@ -132,6 +151,7 @@ if __name__ == '__main__':
     rewr_handler = CommandHandler('rewr', rewr)
     cur_handler = CommandHandler('cur', cur)
     nxt_handler = CommandHandler('next', nxt)
+    cyc_handler = CommandHandler('cyc', cyc)
 
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
@@ -140,5 +160,6 @@ if __name__ == '__main__':
     dispatcher.add_handler(rewr_handler)
     dispatcher.add_handler(cur_handler)
     dispatcher.add_handler(nxt_handler)
+    dispatcher.add_handler(cyc_handler)
 
     updater.start_polling()
