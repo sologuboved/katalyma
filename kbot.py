@@ -121,7 +121,7 @@ def nxt(bot, update):
     bot.send_message(chat_id=chat_id, text=reply)
 
 
-def cyc(bot, update):
+def cycle(bot, update):
     # /cycle 4
     chat_id = update.message.chat_id
     if not is_authorized(chat_id):
@@ -151,7 +151,7 @@ if __name__ == '__main__':
     rewr_handler = CommandHandler('rewr', rewr)
     cur_handler = CommandHandler('cur', cur)
     nxt_handler = CommandHandler('next', nxt)
-    cyc_handler = CommandHandler('cyc', cyc)
+    cycle_handler = CommandHandler('cycle', cycle)
 
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
@@ -160,6 +160,6 @@ if __name__ == '__main__':
     dispatcher.add_handler(rewr_handler)
     dispatcher.add_handler(cur_handler)
     dispatcher.add_handler(nxt_handler)
-    dispatcher.add_handler(cyc_handler)
+    dispatcher.add_handler(cycle_handler)
 
     updater.start_polling()
