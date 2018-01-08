@@ -55,16 +55,12 @@ def string_to_date(raw_date):
         return
 
 
+def tuple_to_str(tpl):
+    return tpl[0] + " - " + tpl[1]
+
+
 def process_int(raw_int):
     try:
         return int(raw_int)
     except (ValueError, TypeError):
         return
-
-
-if __name__ == '__main__':
-    pass
-    # print(string_to_date(""))
-    # print(type(string_to_date('today')))
-
-
