@@ -36,6 +36,3 @@ ERRORS = {1: "File not found!",
           5: "Previous date makes no sense or is missing!"}
 
 ALRIGHT = "So far, so good"
-
-
-

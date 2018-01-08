@@ -98,7 +98,3 @@ class Katalyma(object):
         self._curr_ind = (self._curr_ind - 1) % len(self._cycle)
         self.fill_in_curr_content()
         self._prev_date = UNKNOWN
-
-
-if __name__ == '__main__':
-    pass
