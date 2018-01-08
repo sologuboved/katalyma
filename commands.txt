@@ -3,3 +3,4 @@ next - next state
 slew - write next state in
 unslew - write previous state in
 rewr - 19.12.2017 3 12.12.2017
+cycle - 4 or blank
