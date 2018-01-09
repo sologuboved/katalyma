@@ -33,7 +33,8 @@ def description(bot, update):
                "/unslew\n" \
                "/rewr 19.12.2017 3 12.12.2017\n" \
                "/cur\n" \
-               "/next\n\n" \
+               "/next\n" \
+               "/cycle\n\n" \
                "Shorthand:\n\n" \
                "today\n" \
                "19.12\n" \
