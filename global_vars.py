@@ -9,18 +9,18 @@ BLACK = 'black'
 
 
 CYCLE = (
-    (FLEECY, WATERBLUE),
-    (BLUE, FLOWERED),
-    (BLACK, GRAY),
     (FLEECY, STARRED),
     (BLUE, FLOWERED),
     (BLACK, GRAY),
     (FLEECY, WATERBLUE),
     (BLUE, STARRED),
-    (BLACK, WATERBLUE),
+    (BLACK, GRAY),
+    (FLEECY, WATERBLUE),
+    (BLUE, FLOWERED),
+    (BLACK, GRAY),
     (FLEECY, STARRED),
     (BLUE, FLOWERED),
-    (BLACK, GRAY)
+    (BLACK, WATERBLUE)
 )
 
 
