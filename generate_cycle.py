@@ -27,9 +27,11 @@ def generate_seqs(first, second):
 def generate_filtered_seqs(first, second):
     seqs = generate_seqs(first, second)
     for seq in seqs:
+        if seq[0] == seq[-1]:
+            continue
         ind = second
         while ind < len(seq):
-            if seq[ind] == seq[ind - 1]:
+            if seq[ind] == seq[ind - 1] or seq[ind] == seq[ind - 2]:
                 break
             ind += second
         else:
@@ -80,25 +82,25 @@ def translate_seq(raw_seq, first, second):
 
 if __name__ == '__main__':
     m, sqs = find_best_seq(4, 3)
-    # print(m)
-    # print()
-    # for sq in sqs:
-    #     print(sq)
-    #     print()
-    m1, sqs1 = find_best_seq(3, 4)
-    # print(m)
-    # print()
-    # for sq in sqs:
-    #     print(sq)
-    #     print()
-    print(len(sqs), len(sqs1), m, m1)
-    # sqs1 = [[(i[1], i[0]) for i in sq] for sq in sqs1]
-    for s in sorted(sqs):
-        if s in sqs1:
-            sqs1.remove(s)
-        else:
-            print(s)
+    print(m)
     print()
-    print()
-    for sq in sorted(sqs1):
+    for sq in sqs:
         print(sq)
+        print()
+    # m1, sqs1 = find_best_seq(3, 4)
+    # # print(m)
+    # # print()
+    # # for sq in sqs:
+    # #     print(sq)
+    # #     print()
+    # print(len(sqs), len(sqs1), m, m1)
+    # # sqs1 = [[(i[1], i[0]) for i in sq] for sq in sqs1]
+    # for s in sorted(sqs):
+    #     if s in sqs1:
+    #         sqs1.remove(s)
+    #     else:
+    #         print(s)
+    # print()
+    # print()
+    # for sq in sorted(sqs1):
+    #     print(sq)
