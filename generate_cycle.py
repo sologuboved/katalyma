@@ -27,7 +27,7 @@ def generate_seqs(first, second):
 def generate_filtered_seqs(first, second):
     seqs = generate_seqs(first, second)
     for seq in seqs:
-        if seq[0] == seq[-1]:
+        if seq[0] == seq[-1] or seq[1] == seq[-1]:
             continue
         ind = second
         while ind < len(seq):
